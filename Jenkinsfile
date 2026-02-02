@@ -1,34 +1,21 @@
 pipeline {
     agent any
     
-    tools {
-        maven "Maven-3.9"
-        jdk "JDK21"
-    }
     stages {
-        stage('Checkout') {
+        stage('SCM') {
             steps {
-                git branch: 'main', url: 'https://github.com/PriyaKitty98/hello-ci-cd-jenkins.git'
+                git branch: 'webhookdemo/Jenkinsfile', url: 'https://github.com/PriyaKitty98/hello-ci-cd-jenkins.git'
             }
         }
-        stage('Build') {
+        stage('Build and Unit Test') {
             steps {
                 bat 'mvn clean package'
             }
         }
-        stage('Archive Artifacts') {
+        stage('Done') {
             steps {
-                echo 'Now Archieving it...'
-                archiveArtifacts artifacts: '/target/*.jar', fingerprint: true  //archives the jar file
+                echo 'Pipeline steps completed'
             }
-        }
-    }
-    post {
-        success {
-            echo 'Pipeline completed successfully'
-        }
-        failure {
-            echo 'pipeline failed'
         }
     }
 }
