@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git branch: 'webhookdemo/Jenkinsfile', url: 'https://github.com/PriyaKitty98/hello-ci-cd-jenkins.git'
+                git branch: 'webhook', url: 'https://github.com/PriyaKitty98/hello-ci-cd-jenkins.git'
             }
         }
         stage('Build and Unit Test') {
